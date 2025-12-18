@@ -432,7 +432,6 @@
         let queue = [];
         let currentIndex = -1;
 
-        // Extract video ID from various YouTube URL formats
         function extractVideoId(url) {
             const patterns = [
                 /(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/)([^&\?\/\s]+)/,
@@ -446,13 +445,11 @@
             return null;
         }
 
-        // Extract playlist ID from URL
         function extractPlaylistId(url) {
             const match = url.match(/[?&]list=([^&]+)/);
             return match ? match[1] : null;
         }
 
-        // Add from URL
         async function addFromUrl() {
             const input = document.getElementById('urlInput');
             const url = input.value.trim();
@@ -463,7 +460,6 @@
             const videoId = extractVideoId(url);
 
             if (playlistId) {
-                // Add playlist
                 queue.push({
                     type: 'playlist',
                     id: playlistId,
@@ -471,7 +467,6 @@
                     url: url
                 });
             } else if (videoId) {
-                // Add single video
                 queue.push({
                     type: 'video',
                     id: videoId,
@@ -492,7 +487,6 @@
             }
         }
 
-        // Play item
         function playItem(index) {
             if (index < 0 || index >= queue.length) return;
 
@@ -516,7 +510,6 @@
             renderQueue();
         }
 
-        // Remove item
         function removeItem(index) {
             queue.splice(index, 1);
 
@@ -534,7 +527,6 @@
             renderQueue();
         }
 
-        // Render queue
         function renderQueue() {
             const container = document.getElementById('playlistList');
 
@@ -565,12 +557,10 @@
             document.getElementById('queueCount').textContent = `${queue.length} item${queue.length !== 1 ? 's' : ''}`;
         }
 
-        // Toggle focus mode
         function toggleFocus() {
             document.getElementById('focusMode').classList.toggle('active');
         }
 
-        // Clear all
         function clearAll() {
             if (!confirm('Clear all items from the queue?')) return;
 
@@ -585,13 +575,11 @@
             renderQueue();
         }
 
-        // Save to localStorage
         function saveQueue() {
             localStorage.setItem('lectureQueue', JSON.stringify(queue));
             localStorage.setItem('currentIndex', currentIndex);
         }
 
-        // Load from localStorage
         function loadQueue() {
             const saved = localStorage.getItem('lectureQueue');
             const savedIndex = localStorage.getItem('currentIndex');
@@ -607,7 +595,6 @@
             }
         }
 
-        // Keyboard shortcuts
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') {
                 const focusMode = document.getElementById('focusMode');
@@ -617,15 +604,7 @@
             }
         });
 
-        // Initialize
         loadQueue();
-
-        // Pre-load the provided playlist
-        const initialPlaylist = 'https://youtube.com/playlist?list=PL_A4M5IAkMadyoou3Fl2jR0pG3X1Vi6xA';
-        if (queue.length === 0) {
-            document.getElementById('urlInput').value = initialPlaylist;
-            addFromUrl();
-        }
     </script>
 </body>
 </html>
