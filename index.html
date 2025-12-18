@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="referrer" content="strict-origin-when-cross-origin">
-    <title>Lecture Player</title>
+    <title>Minimal Lecture Player</title>
     <style>
         * {
             margin: 0;
@@ -621,10 +621,10 @@
         loadQueue();
 
         // Pre-load the provided playlist
-        // const initialPlaylist = 'https://youtube.com/playlist?list=PL_A4M5IAkMadyoou3Fl2jR0pG3X1Vi6xA';
-        // if (queue.length === 0) {
-        //     document.getElementById('urlInput').value = initialPlaylist;
-        //     addFromUrl();
+        const initialPlaylist = 'https://youtube.com/playlist?list=PL_A4M5IAkMadyoou3Fl2jR0pG3X1Vi6xA';
+        if (queue.length === 0) {
+            document.getElementById('urlInput').value = initialPlaylist;
+            addFromUrl();
         }
     </script>
 </body>
